@@ -38,7 +38,7 @@ else:
 
     test_image_np = np.asarray(test_image) / 255.0
     pred = predict_class(test_image_np, model)
-    class_names = ['DMLA', 'NORMAL', 'NVC', 'OMD']
+    class_names = ['Dégénérescence Maculaire Liée à l\'Âge', 'Rétine Normale', 'Néovaisseaux Choroïdiens', 'Œdème Maculaire Diabétique']
     result = class_names[np.argmax(pred)]
     output = 'L\'image est classée comme : ' + result
     slot.text('Terminé')
