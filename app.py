@@ -3,53 +3,43 @@ import tensorflow as tf
 import numpy as np
 from PIL import Image
 
+# Configurer le titre et l'icône de l'onglet du navigateur
+st.set_page_config(page_title="EpsiAI - Classification d'OCT", page_icon=":microscope:")
 
-st.set_option('deprecation.showfileUploaderEncoding', False)
 
-@st.cache(allow_output_mutation=True)
+@st.cache_resource
 def load_model():
-	model = tf.keras.models.load_model('./best.hdf5')
-	return model
+    model = tf.keras.models.load_model('./best.hdf5')
+    return model
 
 
 def predict_class(image, model):
-
-	image = tf.cast(image, tf.float32)
-	image = tf.image.resize(image, [180, 180])
-
-	image = np.expand_dims(image, axis = 0)
-
-	prediction = model.predict(image)
-
-	return prediction
+    image = tf.image.resize(image, [32, 32])
+    image = np.expand_dims(image, axis=0)
+    prediction = model.predict(image)
+    return prediction
 
 
 model = load_model()
-st.title('EpsiAI')
+st.title('EpsiAI - Classification d\'OCT')
 
-file = st.file_uploader("Upload an image of a flower", type=["jpg", "png"])
-
+file = st.file_uploader("Téléchargez une image d'OCT", type=["jpg", "png"])
 
 if file is None:
-	st.text('Waiting for upload....')
-
+    st.text('En attente du téléchargement....')
 else:
-	slot = st.empty()
-	slot.text('Running inference....')
+    slot = st.empty()
+    slot.text('Analyse en cours....')
 
-	test_image = Image.open(file)
+    test_image = Image.open(file)
+    if test_image.mode != "RGB":
+        test_image = test_image.convert("RGB")
+    st.image(test_image, caption="Image d'entrée", width=400)
 
-	st.image(test_image, caption="Input Image", width = 400)
-
-	pred = predict_class(np.asarray(test_image), model)
-
-	class_names = ['DMLA', 'NORMAL', 'NVC', 'OMD']
-
-	result = class_names[np.argmax(pred)]
-
-	output = 'The image is a ' + result
-
-	slot.text('Done')
-
-	st.success(output)
-
+    test_image_np = np.asarray(test_image) / 255.0
+    pred = predict_class(test_image_np, model)
+    class_names = ['DMLA', 'NORMAL', 'NVC', 'OMD']
+    result = class_names[np.argmax(pred)]
+    output = 'L\'image est classée comme : ' + result
+    slot.text('Terminé')
+    st.success(output)
