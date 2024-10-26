@@ -6,19 +6,16 @@ from PIL import Image
 # Configurer le titre et l'icône de l'onglet du navigateur
 st.set_page_config(page_title="EpsiAI - Classification d'OCT", page_icon=":microscope:")
 
-
 @st.cache_resource
 def load_model():
     model = tf.keras.models.load_model('./best.hdf5')
     return model
-
 
 def predict_class(image, model):
     image = tf.image.resize(image, [32, 32])
     image = np.expand_dims(image, axis=0)
     prediction = model.predict(image)
     return prediction
-
 
 model = load_model()
 st.title('EpsiAI - Classification d\'OCT')
@@ -40,6 +37,6 @@ else:
     pred = predict_class(test_image_np, model)
     class_names = ['Dégénérescence Maculaire Liée à l\'Âge', 'Rétine Normale', 'Néovaisseaux Choroïdiens', 'Œdème Maculaire Diabétique']
     result = class_names[np.argmax(pred)]
-    output = 'L\'image est classée comme : ' + result
+    output = 'La pathologie détectée est : ' + result
     slot.text('Terminé')
     st.success(output)
