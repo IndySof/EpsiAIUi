@@ -1,7 +1,7 @@
 
-# EspiAI
+# Espia
 
-**EspiAI** est un projet de classification d'images OCT (Tomographie par Cohérence Optique) utilisant un modèle de réseau de neurones convolutif (CNN) avec TensorFlow et Keras. Le modèle, nommé `EspiAI`, est conçu pour identifier diverses pathologies de la rétine à partir d'images OCT et utilise le fichier de modèle `best.hdf5`.
+**Espia** est un projet de classification d'images OCT (Tomographie par Cohérence Optique) utilisant un modèle de réseau de neurones convolutif (CNN) avec TensorFlow et Keras. Le modèle, nommé `EspiAI`, est conçu pour identifier diverses pathologies de la rétine à partir d'images OCT et utilise le fichier de modèle `best.hdf5`.
 
 ## Pathologies Détectées
 
