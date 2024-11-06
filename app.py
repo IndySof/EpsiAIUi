@@ -4,7 +4,7 @@ import numpy as np
 from PIL import Image
 
 # Configurer le titre et l'icône de l'onglet du navigateur
-st.set_page_config(page_title="EpsiAI - Classification d'OCT", page_icon=":microscope:")
+st.set_page_config(page_title="Epsia - Classification d'OCT", page_icon=":microscope:")
 
 @st.cache_resource
 def load_model():
@@ -18,7 +18,7 @@ def predict_class(image, model):
     return prediction
 
 model = load_model()
-st.title('EpsiAI - Classification d\'OCT')
+st.title('Epsia - Classification d\'OCT')
 
 file = st.file_uploader("Téléchargez une image d'OCT", type=["jpg", "png"])
 
