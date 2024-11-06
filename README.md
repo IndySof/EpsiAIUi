@@ -13,8 +13,8 @@ EspiAI est capable de détecter les pathologies suivantes :
 - **Rétine Normale** : structure rétinienne intacte sans signes de fluides ou d'œdème.
 
 <p align="center">
-  <img src="https://github.com/IndySof/EpsiAI/blob/master/Dataset/test/DMLA/DRUSEN-8549730-2.jpeg" alt="Exemple DMLA" width="200"/>
-  <img src="https://github.com/IndySof/EpsiAI/blob/master/Dataset/train/OMD/DME-1072015-2.jpeg" alt="Exemple OMD" width="200"/>
+  <img src="https://github.com/IndySof/Epsia/blob/master/Dataset/test/DMLA/DRUSEN-8549730-2.jpeg" alt="Exemple DMLA" width="200"/>
+  <img src="https://github.com/IndySof/Epsia/blob/master/Dataset/train/OMD/DME-1072015-2.jpeg" alt="Exemple OMD" width="200"/>
 </p>
 
 ## Technologies Utilisées
